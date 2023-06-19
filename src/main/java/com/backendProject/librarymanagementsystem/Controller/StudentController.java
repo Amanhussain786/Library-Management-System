@@ -1,5 +1,6 @@
 package com.backendProject.librarymanagementsystem.Controller;
 
+import com.backendProject.librarymanagementsystem.DTO.StudentRequestDto;
 import com.backendProject.librarymanagementsystem.DTO.StudentResponseDto;
 import com.backendProject.librarymanagementsystem.DTO.StudentUpdateEmailRequestDto;
 import com.backendProject.librarymanagementsystem.Entity.Student;
@@ -15,9 +16,9 @@ public class StudentController {
     @Autowired
     StudentService studentService;
     @PostMapping("/add")
-    public String addStudent(@RequestBody Student student)
+    public String addStudent(@RequestBody StudentRequestDto studentRequestDto)
     {
-        studentService.addStudent(student);
+        studentService.addStudent(studentRequestDto);
         return "Student Added Successfully";
     }
     @GetMapping("/get_students")

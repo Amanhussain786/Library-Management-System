@@ -1,14 +1,15 @@
 package com.backendProject.librarymanagementsystem.Entity;
 
-import com.backendProject.librarymanagementsystem.Enum.Genre;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.backendProject.librarymanagementsystem.Enum.TransactionStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,26 +17,22 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Book {
+public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    private String title;
-
-    private int price;
-
+    private String transactionNumber;
     @Enumerated(EnumType.STRING)
-    private Genre genre;
+    TransactionStatus transactionStatus;
 
-    private boolean isIssued;
+    private Date transactionDate;
+
+    private boolean isIssuedOperation;
 
     @ManyToOne
     @JoinColumn
-    Author author;
-
-    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
-    List<Transaction> transaction = new ArrayList<>();
+    Book book;
 
     @ManyToOne
     @JoinColumn
