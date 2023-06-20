@@ -1,5 +1,9 @@
 package com.backendProject.librarymanagementsystem.Service;
 
+import com.backendProject.librarymanagementsystem.DTO.AuthorRequestDto;
+import com.backendProject.librarymanagementsystem.DTO.AuthorResponseDto;
+import com.backendProject.librarymanagementsystem.DTO.BookRequestDto;
+import com.backendProject.librarymanagementsystem.DTO.BookResponseDto;
 import com.backendProject.librarymanagementsystem.Entity.Author;
 import com.backendProject.librarymanagementsystem.Entity.Book;
 import com.backendProject.librarymanagementsystem.Repository.AuthorRepository;
@@ -13,9 +17,23 @@ import java.util.List;
 public class AuthorService {
     @Autowired
     AuthorRepository authorRepository;
-    public void addAuthor(Author author)
+    public AuthorResponseDto addAuthor(AuthorRequestDto authorRequestDto)
     {
+        //setting author(Request)
+        Author author = new Author();
+        author.setName(authorRequestDto.getName());
+        author.setAge(authorRequestDto.getAge());
+        author.setEmail(authorRequestDto.getEmail());
+        author.setMobNo(authorRequestDto.getMobNo());
+
         authorRepository.save(author);
+
+        //generating response
+        AuthorResponseDto authorResponseDto = new AuthorResponseDto();
+        authorResponseDto.setAge(author.getAge());
+        authorResponseDto.setName(author.getName());
+
+        return authorResponseDto;
     }
     public List<Author> getAuthors()
     {

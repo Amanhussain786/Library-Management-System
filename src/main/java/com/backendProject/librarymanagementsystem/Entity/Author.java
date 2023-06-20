@@ -21,6 +21,7 @@ public class Author {
     private String name;
     private int age;
     private String mobNo;
+    @Column(unique = true)
     private String email;
 
     @OneToMany(mappedBy = "author",cascade = CascadeType.ALL)
