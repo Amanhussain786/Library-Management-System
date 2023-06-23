@@ -32,6 +32,7 @@ public class Book {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     Author author;
 
     @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
@@ -39,6 +40,7 @@ public class Book {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     LibraryCard card;
 
 }

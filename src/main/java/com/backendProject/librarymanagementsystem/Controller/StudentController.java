@@ -4,10 +4,12 @@ import com.backendProject.librarymanagementsystem.DTO.StudentRequestDto;
 import com.backendProject.librarymanagementsystem.DTO.StudentResponseDto;
 import com.backendProject.librarymanagementsystem.DTO.StudentUpdateEmailRequestDto;
 import com.backendProject.librarymanagementsystem.Entity.Student;
+import com.backendProject.librarymanagementsystem.Enum.Department;
 import com.backendProject.librarymanagementsystem.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -26,11 +28,13 @@ public class StudentController {
     {
         return studentService.getStudents();
     }
-    @GetMapping("/studentsByname")
+
+    @GetMapping("/student_by_name")
     public List<Student> getStudentsByname(@RequestParam("name") String name)
     {
        return studentService.getStudentsByname(name);
     }
+
     //we can create our own findby anything , because we can use only findbyId
     //for others like this below we have to create by own in repository first
     @GetMapping("/find_by_email")
@@ -38,14 +42,22 @@ public class StudentController {
     {
         return studentService.findStudentbyEmail(email);
     }
-    @GetMapping("/find_by_age")
-    public List<Student> getstudentbyAge(@RequestParam("age") int age)
+    @GetMapping("/find_student_by_age")
+    public List<Student> studentFindByAge(@RequestParam("age") int age)
     {
-        return studentService.getstudentbyAge(age);
+
+        return studentService.studentFindByAge(age);
     }
     @PutMapping("/update_email")
     public StudentResponseDto updateEmail(@RequestBody StudentUpdateEmailRequestDto studentUpdateEmailRequestDto)
     {
         return studentService.updateEmail(studentUpdateEmailRequestDto);
     }
+
+    @GetMapping("/get_department_by_email")
+    public Department findDepartmentByEmail(@RequestParam("email") String email)
+    {
+        return studentService.findDepartmentByEmail(email);
+    }
+
 }

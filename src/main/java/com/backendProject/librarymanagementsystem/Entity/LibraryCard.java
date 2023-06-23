@@ -35,7 +35,6 @@ public class LibraryCard {
 
     @OneToOne
     @JoinColumn
-    @JsonIgnore
     Student student;
 
     @OneToMany(mappedBy = "card",cascade = CascadeType.ALL)

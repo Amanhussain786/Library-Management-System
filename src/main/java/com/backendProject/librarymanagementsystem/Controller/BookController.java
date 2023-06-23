@@ -23,4 +23,14 @@ public class BookController {
     {
         return bookService.getBooks();
     }
+    @GetMapping("/get_price_by_title")
+    public int getBookPrice(@RequestParam("title") String title)
+    {
+        return bookService.getBookPrice(title);
+    }
+    @GetMapping("/get_books_by_price")
+    public List<Book> getBooksByPrice(@RequestParam("price") int price)
+    {
+        return bookService.getBooksByPrice(price);
+    }
 }

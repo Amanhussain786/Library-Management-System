@@ -6,6 +6,7 @@ import com.backendProject.librarymanagementsystem.DTO.StudentUpdateEmailRequestD
 import com.backendProject.librarymanagementsystem.Entity.LibraryCard;
 import com.backendProject.librarymanagementsystem.Entity.Student;
 import com.backendProject.librarymanagementsystem.Enum.CardStatus;
+import com.backendProject.librarymanagementsystem.Enum.Department;
 import com.backendProject.librarymanagementsystem.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,16 +55,18 @@ public class StudentService {
             }
         }
         return ans;
+//       List<Student> ans = studentRepository.findByName(name);
+//       return ans;
     }
     public String findStudentbyEmail(String email)
     {
-        Student student = studentRepository.findByEmail(email);
-        return student.getName();
+       Student student = studentRepository.findByEmail(email);
+       return student.getName();
     }
-    public List<Student> getstudentbyAge(int age)
+
+    public List<Student> studentFindByAge(int age)
     {
-        List<Student> ans = studentRepository.findByAge(age);
-        return ans;
+        return studentRepository.findByAge(age);
     }
    /* DTO API(Data Transfer Object)
     If a user have your primary key then he can update your data in database so
@@ -81,5 +84,10 @@ public class StudentService {
         studentResponseDto.setName(update.getName());
 
         return studentResponseDto;
+    }
+    public Department findDepartmentByEmail(String email)
+    {
+        Student x = studentRepository.findByEmail(email);
+       return  x.getDepartment();
     }
 }

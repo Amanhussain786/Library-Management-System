@@ -6,5 +6,6 @@ public enum Genre {
     FICTION,
     NON_FICTION,
     SPIRITUAL,
-    BIOGRAPHY
+    BIOGRAPHY,
+    HORROR
 }

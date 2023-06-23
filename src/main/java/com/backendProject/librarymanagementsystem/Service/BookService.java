@@ -42,4 +42,15 @@ public class BookService {
     {
         return bookRepository.findAll();
     }
+
+    public int getBookPrice(String title)
+    {
+        Book obj = bookRepository.getByTitle(title);
+        return obj.getPrice();
+    }
+    public List<Book> getBooksByPrice(int price)
+    {
+        List<Book> ans = bookRepository.getByPrice(price);
+        return ans;
+    }
 }

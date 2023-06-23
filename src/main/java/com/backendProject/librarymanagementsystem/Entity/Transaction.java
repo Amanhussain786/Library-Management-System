@@ -1,6 +1,7 @@
 package com.backendProject.librarymanagementsystem.Entity;
 
 import com.backendProject.librarymanagementsystem.Enum.TransactionStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,10 +38,12 @@ public class Transaction {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     Book book;
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     LibraryCard card;
 
 }
