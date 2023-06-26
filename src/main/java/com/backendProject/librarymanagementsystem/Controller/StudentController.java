@@ -2,6 +2,7 @@ package com.backendProject.librarymanagementsystem.Controller;
 
 import com.backendProject.librarymanagementsystem.DTO.StudentRequestDto;
 import com.backendProject.librarymanagementsystem.DTO.StudentResponseDto;
+import com.backendProject.librarymanagementsystem.DTO.StudentUpdateAgeRequestDto;
 import com.backendProject.librarymanagementsystem.DTO.StudentUpdateEmailRequestDto;
 import com.backendProject.librarymanagementsystem.Entity.Student;
 import com.backendProject.librarymanagementsystem.Enum.Department;
@@ -60,4 +61,15 @@ public class StudentController {
         return studentService.findDepartmentByEmail(email);
     }
 
+    @DeleteMapping("/delete_student_by_name")
+    public String deleteStudentByName(@RequestParam("name") String name)
+    {
+        return studentService.deleteStudentByName(name);
+    }
+
+    @PutMapping("/update_age_of_student")
+    public String updateStudentAge(@RequestBody StudentUpdateAgeRequestDto studentUpdateAgeRequestDto)
+    {
+        return studentService.updateStudentAge(studentUpdateAgeRequestDto);
+    }
 }
