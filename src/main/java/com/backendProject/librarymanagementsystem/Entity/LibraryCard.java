@@ -33,6 +33,8 @@ public class LibraryCard {
     @UpdateTimestamp
     private Date updationDate;
 
+    
+
     @OneToOne
     @JoinColumn
     Student student;

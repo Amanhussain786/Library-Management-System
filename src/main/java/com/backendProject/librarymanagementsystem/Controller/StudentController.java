@@ -8,6 +8,8 @@ import com.backendProject.librarymanagementsystem.Entity.Student;
 import com.backendProject.librarymanagementsystem.Enum.Department;
 import com.backendProject.librarymanagementsystem.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -43,12 +45,13 @@ public class StudentController {
     {
         return studentService.findStudentbyEmail(email);
     }
+
     @GetMapping("/find_student_by_age")
     public List<Student> studentFindByAge(@RequestParam("age") int age)
     {
-
         return studentService.studentFindByAge(age);
     }
+
     @PutMapping("/update_email")
     public StudentResponseDto updateEmail(@RequestBody StudentUpdateEmailRequestDto studentUpdateEmailRequestDto)
     {
@@ -68,8 +71,18 @@ public class StudentController {
     }
 
     @PutMapping("/update_age_of_student")
-    public String updateStudentAge(@RequestBody StudentUpdateAgeRequestDto studentUpdateAgeRequestDto)
-    {
-        return studentService.updateStudentAge(studentUpdateAgeRequestDto);
+    public ResponseEntity updateStudentAge(@RequestBody StudentUpdateAgeRequestDto studentUpdateAgeRequestDto)  {
+
+        //return studentService.updateStudentAge(studentUpdateAgeRequestDto);
+        try {
+             studentService.updateStudentAge(studentUpdateAgeRequestDto);
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+        }
+        return new ResponseEntity<>("Student Age Updated",HttpStatus.CREATED);
     }
+
+
 }

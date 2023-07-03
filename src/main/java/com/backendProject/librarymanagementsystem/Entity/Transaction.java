@@ -22,7 +22,6 @@ import java.util.List;
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     int id;
     private String transactionNumber;
 

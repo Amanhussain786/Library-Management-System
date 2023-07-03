@@ -105,11 +105,34 @@ public class StudentService {
         else return "Student Removed Successfully";
     }
 
-    public String updateStudentAge(StudentUpdateAgeRequestDto studentUpdateAgeRequestDto) {
-        Student student = studentRepository.findById(studentUpdateAgeRequestDto.getId()).get();
-        student.setAge(studentUpdateAgeRequestDto.getAge());
+    public String updateStudentAge(StudentUpdateAgeRequestDto studentUpdateAgeRequestDto) throws Exception {
 
-        studentRepository.save(student);
-        return "Student Age Updated Successfully";
+//        Student student = studentRepository.findById(studentUpdateAgeRequestDto.getId()).orElse(null);
+//        if(student==null)
+//        {
+//            throw new Exception("Student does not exist");
+//        }
+//        else {
+//            student.setAge(studentUpdateAgeRequestDto.getAge());
+//
+//            studentRepository.save(student);
+//            return "Student Age Updated Successfully";
+//        }
+
+        Student student;
+
+        try {
+            student = studentRepository.findById(studentUpdateAgeRequestDto.getId()).get();
+        }
+        catch (Exception e)
+        {
+            throw new Exception("Student Doesn't Exist");
+        }
+            student.setAge(studentUpdateAgeRequestDto.getAge());
+
+            studentRepository.save(student);
+            return "Student Age Updated Successfully";
+
     }
+
 }
