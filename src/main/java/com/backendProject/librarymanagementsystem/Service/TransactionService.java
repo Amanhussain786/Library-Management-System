@@ -11,6 +11,8 @@ import com.backendProject.librarymanagementsystem.Repository.BookRepository;
 import com.backendProject.librarymanagementsystem.Repository.LibraryCardRepository;
 import com.backendProject.librarymanagementsystem.Repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -23,6 +25,8 @@ public class TransactionService {
     BookRepository bookRepository;
     @Autowired
     TransactionRepository transactionRepository;
+    @Autowired
+    private JavaMailSender emailSender;
     public IssueBookResponseDto issueBook(IssueBookRequestDto issueBookRequestDto) throws Exception {
 
         Transaction transaction = new Transaction();
@@ -87,9 +91,19 @@ public class TransactionService {
 
         //prepare responsDto
         IssueBookResponseDto issueBookResponseDto = new IssueBookResponseDto();
-        issueBookResponseDto.setTransactionID(transaction.getId());
+        issueBookResponseDto.setTransactionID(transaction.getTransactionNumber());
         issueBookResponseDto.setTransactionStatus(TransactionStatus.SUCCESS);
         issueBookResponseDto.setBookName(book.getTitle());
+
+        //send email
+        String text = "Congratualtions !! "+ card.getStudent().getName()+" You Have Been Issued "+book.getTitle()+" Book";
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("backendaman123@gmail.com");
+        message.setTo(card.getStudent().getEmail());
+        message.setSubject("Issue Book Notification");
+        message.setText(text);
+        emailSender.send(message);
 
         return issueBookResponseDto;
     }

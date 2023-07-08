@@ -10,6 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class IssueBookRequestDto {
-    private int CardId;
+    private int cardId;
     private int bookId;
 }
