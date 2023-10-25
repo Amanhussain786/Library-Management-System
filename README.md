@@ -36,7 +36,7 @@ A Spring Boot library management application facilitates the issue books. It man
 
 ## Contributing
 
-Contributions to the E-Commerce Backend Application are welcome. If you find any issues or have suggestions for improvement, please create a new issue or submit a pull request.
+Contributions to the Library management system application are welcome. If you find any issues or have suggestions for improvement, please create a new issue or submit a pull request.
 
 ## Screenshot
 ![Swagger1](https://github.com/Amanhussain786/Library-Management-System/assets/78783889/0f6c7037-d116-4f39-a413-256abc111dc8)
